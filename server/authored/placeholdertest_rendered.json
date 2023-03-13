@@ -26,7 +26,8 @@
                                 "method": "GET",
                                 "delay": 0
                             }
-                        ]
+                        ],
+                        []
                     ]
                 },
                 "rules": [
@@ -52,23 +53,18 @@
                     "actions": [
                         [
                             {
-                                "action": "http://[speech]:9105/api/speech",
+                                "action": "soundmedia",
                                 "params": {
                                     "body": {
-                                        "speech": [
-                                            {
-                                                "words": "hello this is |testname|",
-                                                "voice": "Daniel",
-                                                "rate": "180",
-                                                "delay": "0"
-                                            }
-                                        ]
+                                        "media": "placeholdertest/nodetwo_action_0_0.wav",
+                                        "nowait": false,
+                                        "delay": "0",
+                                        "voice": "Daniel"
                                     }
-                                },
-                                "method": "POST",
-                                "delay": 0
+                                }
                             }
-                        ]
+                        ],
+                        []
                     ]
                 },
                 "rules": [],

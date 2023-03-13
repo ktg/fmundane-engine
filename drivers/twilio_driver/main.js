@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = '9107';
 
-const {phoneNumber, twilioAccountId, twilioAccountAuth, twilioAccountPhone} = require('./settings.json')
+const { twilioAccountId, twilioAccountAuth, twilioAccountNumber } = require('./settings.json');
 
 const client = require('twilio')(twilioAccountId, twilioAccountAuth);
 
@@ -14,14 +14,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/api/sms', async function(req, res, next) {
-	const { sms } = req.body;
-	const { message = '', to = phoneNumber } = sms;
-	console.log('seen sms', JSON.stringify(sms, null, 4));
-
+	console.log(req.body.sms)
 	const messageInstance = await client.messages.create({
-		body: message,
-		to: to,
-		from: twilioAccountPhone,
+		body: req.body.sms.message,
+		to: req.body.sms.phone.replace(/^0/, '+44'),
+		from: twilioAccountNumber,
 	});
 	console.log(messageInstance);
 	res.status(200).send('OK');

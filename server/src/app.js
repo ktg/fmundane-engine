@@ -15,7 +15,7 @@ import fs from 'fs';
 const app = express();
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 app.use(cookieParser());
 
 app.use('/event', indexRouter);

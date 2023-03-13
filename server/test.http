@@ -1,0 +1,15 @@
+POST http://localhost:3001/placeholders
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="images"; filename="placeholders.json"
+
+< ./placeholders/placeholders.json
+--WebAppBoundary
+Content-Disposition: form-data; name="testname"
+
+Kevin
+--WebAppBoundary--
+
+###
+

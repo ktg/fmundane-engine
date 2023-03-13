@@ -1,18 +1,43 @@
 <!doctype html>
 <html lang='en'>
 <head>
-  <title>Upload</title>
-  <meta charset='utf-8' />
+	<title>Update Information</title>
+	<meta charset='utf-8' />
+	<style>
+        form {
+            margin: 0 auto;
+            max-width: 300px;
+            padding-top: 1rem;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        form, label {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            padding-bottom: 1rem;
+            font-family: 'Roboto', sans-serif;
+            font-size: smaller;
+        }
+	</style>
 </head>
 <body>
-<form method='post' action=''>
-  <label>Mobile Number
-    <input type='tel' name='phone' required autocomplete='tel' />
-  </label>
-  <label>Files
-    <input type='file' name='files' multiple />
-  </label>
-  <input type='submit' name='Upload' />
+<form action='/placeholders' enctype='multipart/form-data' method='post'>
+	<label>Name
+		<input type='text' name='testname' autocomplete='name' />
+	</label>
+	<label>Mobile Number
+		<input type='tel' name='phone' autocomplete='tel' />
+	</label>
+	<label>Images
+		<input type='file' name='images' multiple />
+	</label>
+	<input type='submit' value='Update Information' style='align-self: center' />
 </form>
 </body>
 </html>

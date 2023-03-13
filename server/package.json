@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./build/bin/www",
-    "prestart": "babel ./src --out-dir build && cp -R ./src/actions ../server/build && cp -R ./src/layers ../server/build",
+    "prestart": "babel ./src --out-dir build && cp -R ./src/actions ./build && cp -R ./src/layers ./build",
     "startdev": "nodemon --exec babel-node ./src/bin/www",
     "lint": "./node_modules/.bin/eslint ./src",
     "pretty": "prettier --write '**/*.{js,json}' '!node_modules/**'",
@@ -16,12 +16,13 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
-    "express": "~4.16.1",
+    "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "http-errors": "~1.6.3",
     "js-yaml": "^3.14.0",
     "morgan": "~1.9.1",
     "mqtt": "^4.2.4",
+    "multer": "^1.4.5-lts.1",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
