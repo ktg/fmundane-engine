@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import { render } from './author';
 
 const multer = require('multer');
 const upload = multer({
@@ -17,7 +18,7 @@ indexRouter.get('/', (req, res) => {
 indexRouter.get('/set', (req, res) => {
 	const fname = path.join(__dirname, '..', '..', '..', 'placeholders', 'placeholders.json');
 	let data = fs.readFileSync(fname);
-	let placeholders = JSON.parse(data);
+	let placeholders = JSON.parse(data.toString());
 	const { key, value } = req.query;
 	if (key && value) {
 		placeholders[key] = value;
@@ -27,11 +28,11 @@ indexRouter.get('/set', (req, res) => {
 	res.status(200).json(placeholders);
 });
 
-indexRouter.post('/', upload.array('images', 3), (req, res) => {
+indexRouter.post('/', upload.array('images', 3), async (req, res) => {
 	console.log(req.body);
-	const fname = path.join(__dirname, '..', '..', 'placeholders', 'placeholders.json');
+	const fname = path.join(__dirname, '..', '..', '..', 'placeholders', 'placeholders.json');
 	let data = fs.readFileSync(fname);
-	let placeholders = JSON.parse(data);
+	let placeholders = JSON.parse(data.toString());
 
 	for (const property in req.body) {
 		if (property !== 'images' && req.body[property]) {
@@ -52,6 +53,7 @@ indexRouter.post('/', upload.array('images', 3), (req, res) => {
 
 	fs.writeFileSync(fname, JSON.stringify(placeholders, null, '\t'));
 	console.log(placeholders);
+	await render('apodcast')
 	res.status(302).redirect('/wa/upload/');
 });
 export default indexRouter;
