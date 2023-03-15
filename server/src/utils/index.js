@@ -98,7 +98,7 @@ const extractlookup = (arr=[], id, nid, i)=>{
     })
 }
 
-const extractactions = (arr=[], id, nid, i)=>{
+const extractactions = (arr=[], id, nid, i, delay)=>{
     return arr.map((s,j)=>{
         return {
             action: "soundmedia",
@@ -109,7 +109,8 @@ const extractactions = (arr=[], id, nid, i)=>{
                     delay: s.delay || 0,
                     voice: s.voice
                 }
-            }
+            },
+            delay: delay || 0
         }
     })
 }
@@ -149,7 +150,7 @@ const updateRules = (id,node)=>{
                     return [...acc, (actionarr||[]).reduce((acc1, action)=>{
                         if (action.action == "say" || action.action.indexOf("[speech]") !== -1){
                            lookup = [...lookup, ...extractlookup(action.params.body.speech, id, node.id, rindx)]
-                           return [...acc1, ...extractactions(action.params.body.speech, id, node.id, rindx)]
+                           return [...acc1, ...extractactions(action.params.body.speech, id, node.id, rindx, action.delay)]
                         }
                         return [...acc1,action];
                     },[])]
