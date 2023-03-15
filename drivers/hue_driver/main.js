@@ -62,6 +62,7 @@ app.get('/ui/api/flicker', async function (req, res) {
             "transitiontime" : 50
         });
     }
+    res.status(200).send("OK");
 });
 
 app.get('/ui/api/on', async function (req, res, next) {
