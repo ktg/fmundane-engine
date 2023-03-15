@@ -18,6 +18,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 const putter = async (light,obj={})=>{
   const options = {
     method: 'PUT',
@@ -46,17 +48,16 @@ app.get('/ui/api/lights',function (req,res,next){
 });
 
 app.get('/ui/api/flicker', async function (req, res) {
-    console.log('turning lights on')
+    console.log('flickering lights')
     for (light of lights){
         await putter(light,{
-            "on": true,
             "bri": 50,
             "transitiontime" : 50
         });
     }
+    await sleep(50)
     for (light of lights){
         await putter(light,{
-            "on": true,
             "bri": 254,
             "transitiontime" : 50
         });
