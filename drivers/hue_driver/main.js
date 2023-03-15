@@ -45,6 +45,24 @@ app.get('/ui/api/lights',function (req,res,next){
   });
 });
 
+app.get('/ui/api/flicker', async function (req, res) {
+    console.log('turning lights on')
+    for (light of lights){
+        await putter(light,{
+            "on": true,
+            "bri": 50,
+            "transitiontime" : 50
+        });
+    }
+    for (light of lights){
+        await putter(light,{
+            "on": true,
+            "bri": 254,
+            "transitiontime" : 50
+        });
+    }
+});
+
 app.get('/ui/api/on', async function (req, res, next) {
   console.log('turning lights on')
 
