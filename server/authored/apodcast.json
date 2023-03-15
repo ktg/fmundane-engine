@@ -1,0 +1,999 @@
+[
+    {
+        "id": "tests",
+        "start": {
+            "actions": [
+                []
+            ],
+            "event": "test"
+        },
+        "events": [
+            {
+                "id": "test",
+                "name": "test",
+                "onstart": {
+                    "speech": []
+                },
+                "type": "button",
+                "subscription": "/press",
+                "data": [
+                    "stop media",
+                    "toggle windows",
+                    "toggle door",
+                    "open drawer (caution!)",
+                    "close drawer (caution!)",
+                    "expand arm (caution!)",
+                    "collapse arm (caution!)",
+                    "scan",
+                    "say something",
+                    "display message",
+                    "print something",
+                    "play media on tv",
+                    "play music",
+                    "sms",
+                    "lights red",
+                    "lights white",
+                    "fan cool",
+                    "fan rotate",
+                    "fan off"
+                ],
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "toggle windows"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "togglewindows"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "toggle door"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "toggledoor"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "open drawer (caution!)"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "opendrawer"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "close drawer (caution!)"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "closedrawer"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "expand arm (caution!)"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "expand"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "collapse arm (caution!)"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "collapse"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scan"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "scan"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "say something"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "say",
+                                    "params": {
+                                        "body": {
+                                            "speech": [
+                                                {
+                                                    "words": "This is a test of audio!",
+                                                    "voice": "Daniel"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "display message"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "message",
+                                    "delay": 0,
+                                    "params": {
+                                        "query": {
+                                            "message": "hello this is me on the screen!"
+                                        }
+                                    }
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "stop media"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "http://[lenovo]:9102/api/media/stop"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "print something"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "print",
+                                    "delay": 0,
+                                    "params": {
+                                        "body": {
+                                            "text": "one two three test"
+                                        }
+                                    }
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "play media on tv"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "mediascreen"
+                                },
+                                {
+                                    "action": "sfx"
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "play music"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "soundmedia",
+                                    "params": {
+                                        "body": {
+                                            "media": "foreboding.mp3",
+                                            "nowait": true,
+                                            "delay": 200
+                                        }
+                                    }
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "sms"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "http://[lenovo]:9109/api/sms",
+                                    "params": {
+                                        "body": {
+                                            "sms": {
+                                                "message": "|textMessage|",
+                                                "phone": "|phoneNumber|"
+                                            }
+                                        }
+                                    },
+                                    "method": "POST",
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "lights red"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "http://[lenovo]:9092/ui/api/hex",
+                                    "params": {
+                                        "query": {
+                                            "hex": "4c00b0"
+                                        }
+                                    },
+                                    "method": "GET",
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "lights white"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "http://[lenovo]:9092/ui/api/hex",
+                                    "params": {
+                                        "query": {
+                                            "hex": "ffffff"
+                                        }
+                                    },
+                                    "method": "GET",
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "fan cool"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "fan",
+                                    "params": {
+                                        "query": {
+                                            "rotate": false,
+                                            "power": 4,
+                                            "cool": true
+                                        }
+                                    },
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "fan rotate"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "fan",
+                                    "params": {
+                                        "query": {
+                                            "rotate": true,
+                                            "power": 10,
+                                            "cool": true,
+                                            "from": 0,
+                                            "to": 90
+                                        }
+                                    },
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "fan off"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "fan",
+                                    "delay": 0,
+                                    "params": {
+                                        "query": {
+                                            "rotate": false,
+                                            "power": 1,
+                                            "cool": true
+                                        }
+                                    }
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "apodcast",
+        "start": {
+            "actions": [
+                []
+            ],
+            "event": "start"
+        },
+        "events": [
+            {
+                "id": "start",
+                "type": "button",
+                "name": "start",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 1,
+                                        "cool": true
+                                    }
+                                },
+                                "delay": 0
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FFFFFF"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
+                            }
+                        ],
+                        []
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "intro"
+                        },
+                        "actions": [],
+                        "next": "intro"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene1"
+                        },
+                        "actions": [],
+                        "next": "scene1"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene2"
+                        },
+                        "actions": [],
+                        "next": "scene2"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene3"
+                        },
+                        "actions": [],
+                        "next": "scene3"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene4"
+                        },
+                        "actions": [],
+                        "next": "scene4"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene5"
+                        },
+                        "actions": [],
+                        "next": "scene5"
+                    }
+                ],
+                "data": [
+                    "intro",
+                    "scene1",
+                    "scene2",
+                    "scene3",
+                    "scene4",
+                    "scene5"
+                ]
+            },
+            {
+                "id": "intro",
+                "type": "button",
+                "name": "intro",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-intro.wav",
+                                        "nowait": false,
+                                        "delay": 0
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene1"
+                        },
+                        "actions": [],
+                        "next": "scene1"
+                    }
+                ],
+                "data": [
+                    "scene1"
+                ]
+            },
+            {
+                "id": "scene1",
+                "type": "button",
+                "name": "scene1",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene1.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                }
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 4,
+                                        "cool": false
+                                    }
+                                },
+                                "delay": 8000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FFFF66"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 1,
+                                        "cool": true
+                                    }
+                                },
+                                "delay": 7000
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene2"
+                        },
+                        "actions": [],
+                        "next": "scene2"
+                    }
+                ],
+                "data": [
+                    "scene2"
+                ]
+            },
+            {
+                "id": "scene2",
+                "type": "button",
+                "name": "scene2",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene2.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                }
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 4,
+                                        "cool": false
+                                    }
+                                },
+                                "delay": 9000
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 1,
+                                        "cool": true
+                                    }
+                                },
+                                "delay": 4000
+                            },
+                            {
+                                "action": "http://[lenovo]:9109/api/sms",
+                                "params": {
+                                    "body": {
+                                        "sms": {
+                                            "message": "@}(a&:£ ::^.;?",
+                                            "phone": "|phoneNumber|"
+                                        }
+                                    }
+                                },
+                                "method": "POST",
+                                "delay": 30000
+                            },
+                            {
+                                "action": "togglewindows",
+                                "delay": 9000
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 4,
+                                        "cool": false
+                                    }
+                                },
+                                "delay": 7000
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 1,
+                                        "cool": false
+                                    }
+                                },
+                                "delay": 64000
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene3"
+                        },
+                        "actions": [],
+                        "next": "scene3"
+                    }
+                ],
+                "data": [
+                    "scene3"
+                ]
+            },
+            {
+                "id": "scene3",
+                "type": "button",
+                "name": "scene3",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene3.wav",
+                                        "nowait": false,
+                                        "delay": 0
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene4"
+                        },
+                        "actions": [],
+                        "next": "scene4"
+                    }
+                ],
+                "data": [
+                    "scene4"
+                ]
+            },
+            {
+                "id": "scene4",
+                "type": "button",
+                "name": "scene4",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene4a.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                }
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 4,
+                                        "cool": true
+                                    }
+                                },
+                                "delay": 10000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "33FF33"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
+                            },
+                            {
+                                "action": "fan",
+                                "params": {
+                                    "query": {
+                                        "rotate": false,
+                                        "power": 1,
+                                        "cool": true
+                                    }
+                                },
+                                "delay": 10000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "333333"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 22000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "000000"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 500
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "33FF33"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 500
+                            },
+                            {
+                                "action": "say",
+                                "params": {
+                                    "body": {
+                                        "speech": [
+                                            {
+                                                "words": "|textMessage|",
+                                                "voice": "Samantha"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "delay": 67000
+                            },
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene4b.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                },
+                                "delay": 500
+                            },
+                            {
+                                "action": "http://[lenovo]:9109/api/sms",
+                                "params": {
+                                    "body": {
+                                        "sms": {
+                                            "message": "Wrong Number",
+                                            "phone": "|phoneNumber|"
+                                        }
+                                    }
+                                },
+                                "method": "POST",
+                                "delay": 7000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
+                                "method": "GET",
+                                "delay": 13000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FF0000"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 57000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
+                                "method": "GET",
+                                "delay": 6000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FF0000"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 500
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
+                                "method": "GET",
+                                "delay": 500
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FF0000"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 500
+                            },
+                            {
+                                "action": "http://[lenovo]:9102/api/media/stop",
+                                "delay": 4000
+                            },
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene4c.wav",
+                                        "nowait": false,
+                                        "delay": 0
+                                    }
+                                },
+                                "delay": 0
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
+                                "method": "GET",
+                                "delay": 0
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "scene5"
+                        },
+                        "actions": [],
+                        "next": "scene5"
+                    }
+                ],
+                "data": [
+                    "scene5"
+                ]
+            },
+            {
+                "id": "scene5",
+                "type": "button",
+                "name": "scene5",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-scene5.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "outro"
+                        },
+                        "actions": [],
+                        "next": "outro"
+                    }
+                ],
+                "data": [
+                    "outro"
+                ]
+            },
+            {
+                "id": "outro",
+                "type": "button",
+                "name": "outro",
+                "subscription": "/press",
+                "onstart": {
+                    "actions": [
+                        [
+                            {
+                                "action": "soundmedia",
+                                "params": {
+                                    "body": {
+                                        "media": "apodcast-outro.wav",
+                                        "nowait": true,
+                                        "delay": 0
+                                    }
+                                }
+                            }
+                        ]
+                    ]
+                },
+                "rules": [
+                    {
+                        "rule": {
+                            "operator": "equals",
+                            "operand": "intro"
+                        },
+                        "actions": [],
+                        "next": "intro"
+                    }
+                ],
+                "data": [
+                    "intro"
+                ]
+            }
+        ]
+    }
+]
