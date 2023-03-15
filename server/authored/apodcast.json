@@ -33,8 +33,9 @@
                     "sms",
                     "lights red",
                     "lights white",
+                    "lights flicker",
                     "fan cool",
-                    "fan rotate",
+                    "fan hot",
                     "fan off"
                 ],
                 "rules": [
@@ -188,7 +189,7 @@
                         "actions": [
                             [
                                 {
-                                    "action": "http://[lenovo]:9102/api/media/stop"
+                                    "action": "http://[lenovo]:9106/api/media/stop"
                                 }
                             ]
                         ],
@@ -321,6 +322,22 @@
                     {
                         "rule": {
                             "operator": "equals",
+                            "operand": "lights flicker"
+                        },
+                        "actions": [
+                            [
+                                {
+                                    "action": "http://[lenovo]:9092/ui/api/flicker",
+                                    "method": "GET",
+                                    "delay": 0
+                                }
+                            ]
+                        ],
+                        "next": "test"
+                    },
+                    {
+                        "rule": {
+                            "operator": "equals",
                             "operand": "fan cool"
                         },
                         "actions": [
@@ -343,21 +360,12 @@
                     {
                         "rule": {
                             "operator": "equals",
-                            "operand": "fan rotate"
+                            "operand": "fan hot"
                         },
                         "actions": [
                             [
                                 {
-                                    "action": "fan",
-                                    "params": {
-                                        "query": {
-                                            "rotate": true,
-                                            "power": 10,
-                                            "cool": true,
-                                            "from": 0,
-                                            "to": 90
-                                        }
-                                    },
+                                    "action": "fanhot",
                                     "delay": 0
                                 }
                             ]
@@ -616,7 +624,7 @@
                                 "params": {
                                     "query": {
                                         "rotate": false,
-                                        "power": 4,
+                                        "power": 6,
                                         "cool": false
                                     }
                                 },
@@ -655,7 +663,7 @@
                                 "params": {
                                     "query": {
                                         "rotate": false,
-                                        "power": 4,
+                                        "power": 10,
                                         "cool": false
                                     }
                                 },
@@ -747,7 +755,7 @@
                                 "params": {
                                     "query": {
                                         "rotate": false,
-                                        "power": 4,
+                                        "power": 6,
                                         "cool": true
                                     }
                                 },
@@ -775,34 +783,18 @@
                                 "delay": 10000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/hex",
-                                "params": {
-                                    "query": {
-                                        "hex": "333333"
-                                    }
-                                },
+                                "action": "http://[lenovo]:9092/ui/api/flicker",
                                 "method": "GET",
                                 "delay": 22000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/hex",
-                                "params": {
-                                    "query": {
-                                        "hex": "000000"
-                                    }
-                                },
+                                "action": "http://[lenovo]:9092/ui/api/flicker",
                                 "method": "GET",
-                                "delay": 500
+                                "delay": 1000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/hex",
-                                "params": {
-                                    "query": {
-                                        "hex": "33FF33"
-                                    }
-                                },
-                                "method": "GET",
-                                "delay": 500
+                                "action": "http://[lenovo]:9102/api/media/stop",
+                                "delay": 26000
                             },
                             {
                                 "action": "say",
@@ -811,12 +803,13 @@
                                         "speech": [
                                             {
                                                 "words": "|textMessage|",
-                                                "voice": "Samantha"
+                                                "voice": "Samantha",
+                                                "nowait": false
                                             }
                                         ]
                                     }
                                 },
-                                "delay": 67000
+                                "delay": 0
                             },
                             {
                                 "action": "soundmedia",
