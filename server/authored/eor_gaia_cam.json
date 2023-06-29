@@ -1564,7 +1564,7 @@
                         ],
                         [
                             {
-                                "action": "http://[lenovo]:9107/api/arm/yes",
+                                "action": "http://[lenovo]:9107/api/arm/collapse",
                                 "params": {},
                                 "method": "GET",
                                 "delay": 0

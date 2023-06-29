@@ -8,7 +8,7 @@ var path = require('path');
 var rp = require('request-promise-native')
 
 let hue_user = "pMouRfgbuQFC5VGtWysTe4cDmcWsZ1mThTNtKmOI"
-let hue_url = "http://192.168.1.105/api"
+let hue_url = "http://192.168.106.152/api"
 let api_url = hue_url + '/' + hue_user
 const PORT = '9092';
 
@@ -47,21 +47,29 @@ app.get('/ui/api/lights',function (req,res,next){
   });
 });
 
-app.get('/ui/api/flicker', async function (req, res) {
+app.get('/ui/api/flicker', function (req, res) {
     console.log('flickering lights')
-    for (light of lights){
-        await putter(light,{
-            "bri": 50,
-            "transitiontime" : 50
-        });
-    }
-    await sleep(50)
-    for (light of lights){
+    const {duration=1000} = req.query;
+    async function flicker() {
+      const timeout = Date.now() + duration;
+      while(Date.now() < timeout) {
+      for (light of lights){
+          const brightness = Math.floor(Math.random() * 128) + 127 
+          await putter(light,{
+             "bri": brightness,
+              "transitiontime" : 0
+          });
+        }
+        await sleep(50)
+      }
+      for (light of lights){
         await putter(light,{
             "bri": 254,
-            "transitiontime" : 50
+            "transitiontime" : 0.05
         });
     }
+    }
+    flicker();
     res.status(200).send("OK");
 });
 

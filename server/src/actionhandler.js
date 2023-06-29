@@ -76,6 +76,8 @@ const replacequery = (obj={})=>{
 }
 
 export const handle = async ({action, delay=0, params={}})=>{
+    
+
     if (action.type === "request"){
         
         const _action = Object.keys(params).reduce((acc, key)=>{

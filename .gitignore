@@ -6,6 +6,7 @@ coverage
 drivers/media_driver/media/
 drivers/stt_driver/coqui-stt-0.9.3-models.pbmm
 drivers/stt_driver/coqui-stt-0.9.3-models.scorer
+drivers/screen_driver/client/build
 media/
 
 # dependencies

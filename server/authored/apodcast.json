@@ -347,7 +347,7 @@
                                     "params": {
                                         "query": {
                                             "rotate": false,
-                                            "power": 4,
+                                            "power": 6,
                                             "cool": true
                                         }
                                     },
@@ -557,7 +557,7 @@
                                 "params": {
                                     "query": {
                                         "rotate": false,
-                                        "power": 4,
+                                        "power": 6,
                                         "cool": false
                                     }
                                 },
@@ -567,7 +567,7 @@
                                 "action": "http://[lenovo]:9092/ui/api/hex",
                                 "params": {
                                     "query": {
-                                        "hex": "FFFF66"
+                                        "hex": "99FF66"
                                     }
                                 },
                                 "method": "GET",
@@ -583,7 +583,18 @@
                                     }
                                 },
                                 "delay": 7000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FFFFFF"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
                             }
+
                         ]
                     ]
                 },
@@ -628,7 +639,17 @@
                                         "cool": false
                                     }
                                 },
-                                "delay": 9000
+                                "delay": 7000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "99FF66"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
                             },
                             {
                                 "action": "fan",
@@ -640,6 +661,16 @@
                                     }
                                 },
                                 "delay": 4000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FFFFFF"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
                             },
                             {
                                 "action": "http://[lenovo]:9109/api/sms",
@@ -656,7 +687,7 @@
                             },
                             {
                                 "action": "togglewindows",
-                                "delay": 9000
+                                "delay": 10000
                             },
                             {
                                 "action": "fan",
@@ -667,7 +698,7 @@
                                         "cool": false
                                     }
                                 },
-                                "delay": 7000
+                                "delay": 6000
                             },
                             {
                                 "action": "fan",
@@ -765,7 +796,7 @@
                                 "action": "http://[lenovo]:9092/ui/api/hex",
                                 "params": {
                                     "query": {
-                                        "hex": "33FF33"
+                                        "hex": "66FF33"
                                     }
                                 },
                                 "method": "GET",
@@ -783,14 +814,34 @@
                                 "delay": 10000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/flicker",
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "FFFFFF"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 0
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
                                 "method": "GET",
                                 "delay": 22000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/flicker",
+                                "action": "http://[lenovo]:9092/ui/api/on",
+                                "method": "GET",
+                                "delay": 50
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/off",
                                 "method": "GET",
                                 "delay": 1000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/on",
+                                "method": "GET",
+                                "delay": 50
                             },
                             {
                                 "action": "http://[lenovo]:9102/api/media/stop",
@@ -833,12 +884,22 @@
                                     }
                                 },
                                 "method": "POST",
-                                "delay": 7000
+                                "delay": 6000
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/off",
                                 "method": "GET",
-                                "delay": 13000
+                                "delay": 14000
+                            },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/hex",
+                                "params": {
+                                    "query": {
+                                        "hex": "880000"
+                                    }
+                                },
+                                "method": "GET",
+                                "delay": 52000
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/hex",
@@ -848,7 +909,7 @@
                                     }
                                 },
                                 "method": "GET",
-                                "delay": 57000
+                                "delay": 5000
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/off",
@@ -856,29 +917,18 @@
                                 "delay": 6000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/hex",
-                                "params": {
-                                    "query": {
-                                        "hex": "FF0000"
-                                    }
-                                },
-                                "method": "GET",
-                                "delay": 500
+                                "action": "http://[lenovo]:9092/ui/api/on",
+                                "delay": 50
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/off",
                                 "method": "GET",
-                                "delay": 500
+                                "delay": 1000
                             },
                             {
-                                "action": "http://[lenovo]:9092/ui/api/hex",
-                                "params": {
-                                    "query": {
-                                        "hex": "FF0000"
-                                    }
-                                },
+                                "action": "http://[lenovo]:9092/ui/api/on",
                                 "method": "GET",
-                                "delay": 500
+                                "delay": 50
                             },
                             {
                                 "action": "http://[lenovo]:9102/api/media/stop",
