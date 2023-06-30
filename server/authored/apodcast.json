@@ -329,6 +329,11 @@
                                 {
                                     "action": "http://[lenovo]:9092/ui/api/flicker",
                                     "method": "GET",
+                                    "params":{
+                                        "query":{
+                                            "duration": 3000
+                                        }
+                                    },
                                     "delay": 0
                                 }
                             ]
@@ -593,8 +598,7 @@
                                 },
                                 "method": "GET",
                                 "delay": 0
-                            }
-
+                            } 
                         ]
                     ]
                 },
@@ -631,6 +635,16 @@
                                 }
                             },
                             {
+                                "action": "http://[lenovo]:9092/ui/api/flicker",
+                                "method": "GET",
+                                "params": {
+                                    "query": {
+                                        "duration": 3000
+                                    }
+                                },
+                                "delay": 1500
+                            },         
+                            {
                                 "action": "fan",
                                 "params": {
                                     "query": {
@@ -639,7 +653,7 @@
                                         "cool": false
                                     }
                                 },
-                                "delay": 7000
+                                "delay": 5500
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/hex",
@@ -782,6 +796,16 @@
                                 }
                             },
                             {
+                                "action": "http://[lenovo]:9092/ui/api/flicker",
+                                "method": "GET",
+                                "params":{
+                                    "query":{
+                                        "duration": 9000
+                                    }
+                                },
+                                "delay": 1000
+                            },   
+                            {
                                 "action": "fan",
                                 "params": {
                                     "query": {
@@ -790,7 +814,7 @@
                                         "cool": true
                                     }
                                 },
-                                "delay": 10000
+                                "delay": 9000
                             },
                             {
                                 "action": "http://[lenovo]:9092/ui/api/hex",
@@ -911,6 +935,16 @@
                                 "method": "GET",
                                 "delay": 5000
                             },
+                            {
+                                "action": "http://[lenovo]:9092/ui/api/flicker",
+                                "method": "GET",
+                                "params":{
+                                    "query": {
+                                        "duration": 10000
+                                    }
+                                },
+                                "delay": 0
+                            },     
                             {
                                 "action": "http://[lenovo]:9092/ui/api/off",
                                 "method": "GET",

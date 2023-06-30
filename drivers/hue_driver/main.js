@@ -48,8 +48,8 @@ app.get('/ui/api/lights',function (req,res,next){
 });
 
 app.get('/ui/api/flicker', function (req, res) {
-    console.log('flickering lights')
-    const {duration=1000} = req.query;
+    const duration = Number(req.query.duration) ?? 1000;
+    console.log('flickering lights for ' + duration)
     async function flicker() {
       const timeout = Date.now() + duration;
       while(Date.now() < timeout) {
@@ -60,12 +60,12 @@ app.get('/ui/api/flicker', function (req, res) {
               "transitiontime" : 0
           });
         }
-        await sleep(50)
+        await sleep(20)
       }
       for (light of lights){
         await putter(light,{
             "bri": 254,
-            "transitiontime" : 0.05
+            "transitiontime" : 0
         });
     }
     }
