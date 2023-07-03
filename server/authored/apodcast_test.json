@@ -1,0 +1,942 @@
+[
+	{
+		"id": "tests",
+		"start": {
+			"event": "test"
+		},
+		"events": [
+			{
+				"id": "test",
+				"name": "test",
+				"onstart": {
+					"speech": []
+				},
+				"type": "button",
+				"subscription": "/press",
+				"data": [
+					"stop media",
+					"toggle windows",
+					"toggle door",
+					"open drawer (caution!)",
+					"close drawer (caution!)",
+					"expand arm (caution!)",
+					"collapse arm (caution!)",
+					"scan",
+					"say something",
+					"display message",
+					"print something",
+					"play media on tv",
+					"play music",
+					"sms",
+					"lights red",
+					"lights white",
+					"lights flicker",
+					"fan cool",
+					"fan hot",
+					"fan off"
+				],
+				"rules": [
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "toggle windows"
+						},
+						"actions": [
+							[
+								{
+									"action": "togglewindows"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "toggle door"
+						},
+						"actions": [
+							[
+								{
+									"action": "toggledoor"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "open drawer (caution!)"
+						},
+						"actions": [
+							[
+								{
+									"action": "opendrawer"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "close drawer (caution!)"
+						},
+						"actions": [
+							[
+								{
+									"action": "closedrawer"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "expand arm (caution!)"
+						},
+						"actions": [
+							[
+								{
+									"action": "expand"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "collapse arm (caution!)"
+						},
+						"actions": [
+							[
+								{
+									"action": "collapse"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "scan"
+						},
+						"actions": [
+							[
+								{
+									"action": "scan"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "say something"
+						},
+						"actions": [
+							[
+								{
+									"action": "say",
+									"params": {
+										"body": {
+											"speech": [
+												{
+													"words": "This is a test of audio!",
+													"voice": "Daniel"
+												}
+											]
+										}
+									}
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "display message"
+						},
+						"actions": [
+							[
+								{
+									"action": "message",
+									"delay": 0,
+									"params": {
+										"query": {
+											"message": "hello this is me on the screen!"
+										}
+									}
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "stop media"
+						},
+						"actions": [
+							[
+								{
+									"action": "http://[lenovo]:9106/api/media/stop"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "print something"
+						},
+						"actions": [
+							[
+								{
+									"action": "print",
+									"delay": 0,
+									"params": {
+										"body": {
+											"text": "one two three test"
+										}
+									}
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "play media on tv"
+						},
+						"actions": [
+							[
+								{
+									"action": "mediascreen"
+								},
+								{
+									"action": "sfx"
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "play music"
+						},
+						"actions": [
+							[
+								{
+									"action": "soundmedia",
+									"params": {
+										"body": {
+											"media": "foreboding.mp3",
+											"nowait": true,
+											"delay": 200
+										}
+									}
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "sms"
+						},
+						"actions": [
+							[
+								{
+									"action": "http://[lenovo]:9109/api/sms",
+									"params": {
+										"body": {
+											"sms": {
+												"message": "|textMessage|",
+												"phone": "|phoneNumber|"
+											}
+										}
+									},
+									"method": "POST",
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "lights red"
+						},
+						"actions": [
+							[
+								{
+									"action": "http://[lenovo]:9092/ui/api/hex",
+									"params": {
+										"query": {
+											"hex": "4c00b0"
+										}
+									},
+									"method": "GET",
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "lights white"
+						},
+						"actions": [
+							[
+								{
+									"action": "http://[lenovo]:9092/ui/api/hex",
+									"params": {
+										"query": {
+											"hex": "ffffff"
+										}
+									},
+									"method": "GET",
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "lights flicker"
+						},
+						"actions": [
+							[
+								{
+									"action": "http://[lenovo]:9092/ui/api/flicker",
+									"method": "GET",
+									"params": {
+										"query": {
+											"duration": 3000
+										}
+									},
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "fan cool"
+						},
+						"actions": [
+							[
+								{
+									"action": "fan",
+									"params": {
+										"query": {
+											"rotate": false,
+											"power": 6,
+											"cool": true
+										}
+									},
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "fan hot"
+						},
+						"actions": [
+							[
+								{
+									"action": "fanhot",
+									"delay": 0
+								}
+							]
+						],
+						"next": "test"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "fan off"
+						},
+						"actions": [
+							[
+								{
+									"action": "fan",
+									"delay": 0,
+									"params": {
+										"query": {
+											"rotate": false,
+											"power": 1,
+											"cool": true
+										}
+									}
+								}
+							]
+						],
+						"next": "test"
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "apodcast",
+		"start": {
+			"event": "start"
+		},
+		"events": [
+			{
+				"id": "start",
+				"type": "button",
+				"name": "start",
+				"subscription": "/press",
+				"onstart": {
+					"actions": [
+						[
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 1,
+										"cool": true
+									}
+								},
+								"delay": 0
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "FFFFFF"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							}
+						]
+					]
+				},
+				"rules": [
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "intro"
+						},
+						"actions": [],
+						"next": "intro"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "scene1"
+						},
+						"actions": [],
+						"next": "scene1"
+					},
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "outro"
+						},
+						"actions": [],
+						"next": "outro"
+					}
+				],
+				"data": [
+					"intro",
+					"scene1",
+					"outro"
+				]
+			},
+			{
+				"id": "intro",
+				"type": "button",
+				"name": "intro",
+				"subscription": "/press",
+				"onstart": {
+					"actions": [
+						[
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-intro.wav",
+										"nowait": false,
+										"delay": 0
+									}
+								}
+							}
+						]
+					]
+				},
+				"rules": [
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "scene1"
+						},
+						"actions": [],
+						"next": "scene1"
+					}
+				],
+				"data": [
+					"scene1"
+				]
+			},
+			{
+				"id": "scene1",
+				"type": "button",
+				"name": "scene1",
+				"subscription": "/press",
+				"onstart": {
+					"actions": [
+						[
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene1.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								}
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 6,
+										"cool": false
+									}
+								},
+								"delay": 8000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "99FF66"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 1,
+										"cool": true
+									}
+								},
+								"delay": 7000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "FFFFFF"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene2.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								}
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/flicker",
+								"method": "GET",
+								"params": {
+									"query": {
+										"duration": 3000
+									}
+								},
+								"delay": 1500
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 6,
+										"cool": false
+									}
+								},
+								"delay": 5500
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "99FF66"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 1,
+										"cool": true
+									}
+								},
+								"delay": 4000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "FFFFFF"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "http://[lenovo]:9109/api/sms",
+								"params": {
+									"body": {
+										"sms": {
+											"message": "@}(a&:£ ::^.;?",
+											"phone": "|phoneNumber|"
+										}
+									}
+								},
+								"method": "POST",
+								"delay": 30000
+							},
+							{
+								"action": "togglewindows",
+								"delay": 10000
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 10,
+										"cool": false
+									}
+								},
+								"delay": 6000
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 1,
+										"cool": false
+									}
+								},
+								"delay": 64000
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene3.wav",
+										"nowait": false,
+										"delay": 0
+									}
+								}
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene4a.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								}
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/flicker",
+								"method": "GET",
+								"params": {
+									"query": {
+										"duration": 9000
+									}
+								},
+								"delay": 1000
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 6,
+										"cool": true
+									}
+								},
+								"delay": 9000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "66FF33"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "fan",
+								"params": {
+									"query": {
+										"rotate": false,
+										"power": 1,
+										"cool": true
+									}
+								},
+								"delay": 10000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "FFFFFF"
+									}
+								},
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 22000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/on",
+								"method": "GET",
+								"delay": 50
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 1000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/on",
+								"method": "GET",
+								"delay": 50
+							},
+							{
+								"action": "http://[lenovo]:9102/api/media/stop",
+								"delay": 26000
+							},
+							{
+								"action": "say",
+								"params": {
+									"body": {
+										"speech": [
+											{
+												"words": "|textMessage|",
+												"voice": "Samantha",
+												"nowait": false
+											}
+										]
+									}
+								},
+								"delay": 0
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene4b.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								},
+								"delay": 500
+							},
+							{
+								"action": "http://[lenovo]:9109/api/sms",
+								"params": {
+									"body": {
+										"sms": {
+											"message": "Wrong Number",
+											"phone": "|phoneNumber|"
+										}
+									}
+								},
+								"method": "POST",
+								"delay": 6000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 14000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "880000"
+									}
+								},
+								"method": "GET",
+								"delay": 52000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/hex",
+								"params": {
+									"query": {
+										"hex": "FF0000"
+									}
+								},
+								"method": "GET",
+								"delay": 5000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/flicker",
+								"method": "GET",
+								"params": {
+									"query": {
+										"duration": 10000
+									}
+								},
+								"delay": 0
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 6000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/on",
+								"delay": 50
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 1000
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/on",
+								"method": "GET",
+								"delay": 50
+							},
+							{
+								"action": "http://[lenovo]:9102/api/media/stop",
+								"delay": 4000
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene4c.wav",
+										"nowait": false,
+										"delay": 0
+									}
+								},
+								"delay": 0
+							},
+							{
+								"action": "http://[lenovo]:9092/ui/api/off",
+								"method": "GET",
+								"delay": 0
+							},
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-scene5.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								}
+							}
+						]
+					]
+				},
+				"rules": [
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "outro"
+						},
+						"actions": [],
+						"next": "outro"
+					}
+				],
+				"data": [
+					"outro"
+				]
+			},
+			{
+				"id": "outro",
+				"type": "button",
+				"name": "outro",
+				"subscription": "/press",
+				"onstart": {
+					"actions": [
+						[
+							{
+								"action": "soundmedia",
+								"params": {
+									"body": {
+										"media": "apodcast-outro.wav",
+										"nowait": true,
+										"delay": 0
+									}
+								}
+							}
+						]
+					]
+				},
+				"rules": [
+					{
+						"rule": {
+							"operator": "equals",
+							"operand": "intro"
+						},
+						"actions": [],
+						"next": "intro"
+					}
+				],
+				"data": [
+					"intro"
+				]
+			}
+		]
+	}
+]
