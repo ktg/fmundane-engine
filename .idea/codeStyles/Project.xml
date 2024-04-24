@@ -28,6 +28,7 @@
       <option name="SPACES_WITHIN_IMPORTS" value="true" />
     </JSCodeStyleSettings>
     <JSON>
+      <option name="OBJECT_WRAPPING" value="1" />
       <option name="ARRAY_WRAPPING" value="5" />
     </JSON>
     <JavaCodeStyleSettings>
